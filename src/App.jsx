@@ -4,8 +4,64 @@ import viteLogo from "/vite.svg";
 import Card from "./components/Card";
 
 function App() {
- 
-
+  let pokemon = [{
+    name: 'samurott',
+    id: 0
+  },{
+    name: 'zekrom',
+    id: 1
+  },{
+    name: 'kyurem-black',
+    id: 2
+  },{
+    name: 'braviary',
+    id: 3
+  },{
+    name: 'druddigon',
+    id: 4
+  },{
+    name: 'mienshao',
+    id: 5
+  },{
+    name: 'reshiram',
+    id: 6
+  },{
+    name: 'emolga',
+    id: 7
+  },{
+    name: 'jellicent',
+    id: 8
+  },{
+    name: 'krookodile',
+    id: 9
+  },{
+    name: 'excadrill',
+    id: 10
+  },{
+    name: 'woobat', 
+    id: 11
+  }
+];
+function randomPokemon(){
+  let len = pokemon.length;
+  let used = [];
+  for(let i = 0; i < len; i++){
+    let check = true;
+    while(check){
+     let n = randomNumber(len)
+     if (!used.includes(n)){
+        used.push(n)
+        check = false;
+     }
+    
+     
+  }}
+  console.log(used)
+}
+randomPokemon()
+function randomNumber(num){
+  return Math.floor(Math.random() * num)
+}
 
   
   return (
