@@ -1,0 +1,17 @@
+Components I will need
+
+Probably just a card component to be honest 
+Goal for 3/18/24 -- Cards are not necessarily styled, but they are mostly done
+Card pseudo code -
+div
+img
+name
+div
+I might be way over simplifing but I don't think that seems bad at all
+The images will need to be gathered from an API, goal for this morning might just be to make a call
+There will need to be a function that randomly creates the 12 cards
+There will need to be an array in state that keeps track of the cards ids, including which ones 
+have been selected 
+This will probably have a useEffect hook that is responsible for increasing the score state variable, 
+or ending the game. When the game is ended, this will check if score is better than the current best score
+(another state variable). If it is, setBestScore will be called, and then score will be cleared for a new game
