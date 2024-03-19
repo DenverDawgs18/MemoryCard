@@ -82,6 +82,9 @@ function handleClick(k){
     setScore(
       0
     )
+    setAlrSelected(
+      []
+    )
     
   }
   else{
