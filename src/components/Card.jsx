@@ -1,8 +1,9 @@
 import {useState, useEffect} from 'react'
-export default function Card({name}){
+export default function Card({name, id, onClick}){
     const [sprite, setSprite] = useState('')
+    let newName = name.toLowerCase()
   useEffect(() => {
-    fetch('https://pokeapi.co/api/v2/pokemon/' + name, {
+    fetch('https://pokeapi.co/api/v2/pokemon/' + newName, {
     mode: 'cors'
   })
   .then((response) => response.json())
@@ -10,8 +11,9 @@ export default function Card({name}){
   })
   
   }, []);
+  let properName = name.charAt(0).toUpperCase();
   return(
-    <div className="card">
+    <div className="card" onClick={onClick}>
         <img src={sprite} alt={name} />
         <p>{name}</p>
     </div>

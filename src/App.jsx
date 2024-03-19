@@ -5,43 +5,44 @@ import Card from "./components/Card";
 
 function App() {
   let pokemon = [{
-    name: 'samurott',
+    name: 'Samurott',
     id: 0
   },{
-    name: 'zekrom',
+    name: 'Zekrom',
     id: 1
   },{
-    name: 'kyurem-black',
+    name: 'Kyurem-Black',
     id: 2
   },{
-    name: 'braviary',
+    name: 'Braviary',
     id: 3
   },{
-    name: 'druddigon',
+    name: 'Druddigon',
     id: 4
   },{
-    name: 'mienshao',
+    name: 'Mienshao',
     id: 5
   },{
-    name: 'reshiram',
+    name: 'Reshiram',
     id: 6
   },{
-    name: 'emolga',
+    name: 'Emolga',
     id: 7
   },{
-    name: 'jellicent',
+    name: 'Jellicent',
     id: 8
   },{
-    name: 'krookodile',
+    name: 'Krookodile',
     id: 9
   },{
-    name: 'excadrill',
+    name: 'Excadrill',
     id: 10
   },{
-    name: 'woobat', 
+    name: 'Woobat', 
     id: 11
   }
 ];
+let cards = [];
 function randomPokemon(){
   let len = pokemon.length;
   let used = [];
@@ -56,29 +57,68 @@ function randomPokemon(){
     
      
   }}
-  console.log(used)
+  let newObjs = []
+  for(let i = 0; i < used.length; i++){
+    let ne =  pokemon.find(obj => {
+      return obj.id == used[i]
+    })
+    newObjs.push(ne)
+  }
+  for(let i = 0; i < newObjs.length; i++){
+    cards.push(<Card name = {newObjs[i].name} key={newObjs[i].id} onClick={() => handleClick(newObjs[i].id)}></Card>)
+  }
 }
-randomPokemon()
+const[alrSelected, setAlrSelected] = useState([])
+const [score, setScore] = useState(0)
+const [bestScore, setBestScore] = useState(0)
+function handleClick(k){
+  
+  if(alrSelected.includes(k)){
+    if(score > bestScore){
+      setBestScore(
+        score
+      )
+    }
+    setScore(
+      0
+    )
+    
+  }
+  else{
+    
+    setScore(
+      prevScore => prevScore + 1
+    )
+    setAlrSelected(
+      [
+        ...alrSelected, 
+        k
+      ]
+    )
+  }
+}
+
 function randomNumber(num){
   return Math.floor(Math.random() * num)
 }
 
-  
+randomPokemon()
   return (
-    <div className="cards">
-      <Card name={'samurott'}></Card>
-      <Card name={'zekrom'}></Card>
-      <Card name={'kyurem-black'}></Card>
-      <Card name={'braviary'}></Card>
-      <Card name={'druddigon'}></Card>
-      <Card name={'mienshao'}></Card>
-      <Card name={'reshiram'}></Card>
-      <Card name={'emolga'}></Card>
-      <Card name={'jellicent'}></Card>
-      <Card name={'krookodile'}></Card>
-      <Card name={'excadrill'}></Card>
-      <Card name={'woobat'}></Card>
+    <>
+    <div className="notCards">
+      <div className="header">
+        <h1>Pokemon Memory Game!</h1>
+        <h4>Click on the Pokemon, but don't click any more than once!</h4>
+      </div>
+      <div className="scores"><p>Current score: {score}
+      </p> <p>Best score: {bestScore}</p>
+      </div>
     </div>
+      <div className="cards">
+        {cards}
+      </div>
+      
+    </>
   );
 }
 
